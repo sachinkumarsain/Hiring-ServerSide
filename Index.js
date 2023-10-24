@@ -6,7 +6,7 @@ import cors from "cors"
 import connection from "./Connection.js";
 // import condedate from "./Modal.js";
 import router  from "./Routes/Admin.js";
-import userRouter from "./Routes/SignIn.js"
+import userRouter from "./Routes/SignIn.js" 
 
 const app = express()
 
@@ -16,7 +16,7 @@ app.use(cors({ origin: "http://localhost:3000" }));
 
 //.................import files .................//
 
-app.post("/Admin" ,router )
+app.post("/Admin" ,router ) 
 app.post("/user" , userRouter)
 
 

@@ -19,7 +19,7 @@ userRouter.post("/user" ,async(req,res)=>{
 
     await userDatas.save()
 
-    res.status(200).send("User Comming")
+    res.status(200).send(fullname)
     }
     else{
         res.status(202).send("don't user comming")
