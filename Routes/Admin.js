@@ -5,7 +5,7 @@ import path from "path" ;
 
 //.............import file...................//
 
-import condedate from "../Modal.js"
+import condedate from "../Modals/Condedate.js"
 
 const router = express.Router();
 
