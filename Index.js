@@ -17,9 +17,9 @@ app.use(cors({ origin: "http://localhost:3000" }));
 
 //.................import files .................//
 
-app.post("/Admin" ,router ) 
-app.post("/user" , userRouter)
-app.post("/category" , categoryRouter)
+app.use(router ) 
+app.use(userRouter)
+app.use(categoryRouter)  
 
 
 //...............................database connection..............................//

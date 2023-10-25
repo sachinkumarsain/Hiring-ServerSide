@@ -6,11 +6,11 @@ import condedate from "../Modals/Condedate.js"
 
 const categoryRouter = express.Router();
 
+//..................Category find and filter....................//
 
 categoryRouter.post("/category" ,async(req,res)=>{
     const courseName= req.body.course
 
-//..............find total books and filter books............//
 
 if(courseName!==0){
     let totalCondedate= await condedate.find({});
@@ -20,6 +20,17 @@ if(courseName!==0){
 else{
     res.status(202).send("category don't available")
 }
+
+
+//..........................condedate findOne...............//
+
+categoryRouter.post('/condedate' , async(req ,res)=>{
+
+    const condedateId = req.body.condedateId;
+
+    console.log(condedateId)
+})
+
 
 })
 
