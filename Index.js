@@ -7,6 +7,7 @@ import connection from "./Connection.js";
 // import condedate from "./Modal.js";
 import router  from "./Routes/Admin.js";
 import userRouter from "./Routes/SignIn.js" 
+import categoryRouter from "./Routes/Category.js";
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(cors({ origin: "http://localhost:3000" }));
 
 app.post("/Admin" ,router ) 
 app.post("/user" , userRouter)
+app.post("/category" , categoryRouter)
 
 
 //...............................database connection..............................//

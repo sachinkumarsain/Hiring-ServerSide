@@ -15,7 +15,8 @@ profilePic:{
     require:true
 },email :{
     type:String,
-    require:true
+    require:true,
+    unique:true,
 },address :{
     type:String,
     require:true
