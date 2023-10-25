@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         require:true
     }
+   
 })
 
 let userData =  mongoose.model("userData" , userSchema)

@@ -3,7 +3,7 @@ import express, { Router } from "express"
 //.............import file...................//
 
 import condedate from "../Modals/Condedate.js"
-
+import dashboard from "../Modals/Dashboard.js";
 const categoryRouter = express.Router();
 
 //..................Category find and filter....................//
@@ -24,14 +24,35 @@ else{
 
 //..........................condedate findOne...............//
 
-categoryRouter.post('/condedate' , async(req ,res)=>{
+categoryRouter.patch("/likeCondedate",   async(req,res)=>{
+    let likeId = req.body.condidateId
+    let dashboardData = await dashboard.find({})
+   
+if(dashboardData.length===0){
 
-    const condedateId = req.body.condedateId;
+    const Dashboard = new dashboard({
+        favourite: 0
+    })
 
-    console.log(condedateId)
-})
+    await Dashboard.save()
+}
+else if(booksLiked.includes(likeId)){
+    res.status(200).send("you already likes this book")
+}
+else{
+    let liked = await dashboard.updateOne(
+        {$push:{favourite:likeId}}
+    )
 
+    // let totalLikedBook = await dashbord.likebook.find()
 
+    res.status(200).send("Successfully liked  book")
+
+}
+    
+
+    
+        
 })
 
 
