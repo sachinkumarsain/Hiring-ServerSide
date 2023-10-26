@@ -3,7 +3,7 @@ import express, { Router } from "express"
 //.............import file...................//
 
 import condedate from "../Modals/Condedate.js"
-import dashboard from "../Modals/Dashboard.js";
+// import dashboard from "../Modals/Dashboard.js";
 const categoryRouter = express.Router();
 
 //..................Category find and filter....................//
@@ -21,39 +21,39 @@ else{
     res.status(202).send("category don't available")
 }
 
-
+})
 //..........................condedate findOne...............//
 
-categoryRouter.patch("/likeCondedate",   async(req,res)=>{
-    let likeId = req.body.condidateId
-    let dashboardData = await dashboard.find({})
+// categoryRouter.patch("/likeCondedate",   async(req,res)=>{
+//     let likeId = req.body.condidateId
+//     let dashboardData = await dashboard.find({})
    
-if(dashboardData.length===0){
+// if(dashboardData.length===0){
 
-    const Dashboard = new dashboard({
-        favourite: 0
-    })
+//     const Dashboard = new dashboard({
+//         favourite: 0
+//     })   
 
-    await Dashboard.save()
-}
-else if(booksLiked.includes(likeId)){
-    res.status(200).send("you already likes this book")
-}
-else{
-    let liked = await dashboard.updateOne(
-        {$push:{favourite:likeId}}
-    )
+//     await Dashboard.save()
+// }
+// else if(booksLiked.includes(likeId)){
+//     res.status(200).send("you already likes this book")
+// }
+// else{
+//     let liked = await dashboard.updateOne(
+//         {$push:{favourite:likeId}}
+//     )
 
-    // let totalLikedBook = await dashbord.likebook.find()
+//     // let totalLikedBook = await dashbord.likebook.find()
 
-    res.status(200).send("Successfully liked  book")
+//     res.status(200).send("Successfully liked  book")
 
-}
+// }
     
 
     
         
-})
+// })
 
 
 export default categoryRouter
