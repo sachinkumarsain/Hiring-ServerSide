@@ -5,13 +5,10 @@ const schema = new mongoose.Schema({
     fullname: {
         type: String,
         require: true
-    },
-    profilePic: {
-        type: String,
-        require: true
     }
+   
     , course: {
-        type: String,
+        type: Array,
         require: true
     }, email: {
         type: String,
@@ -46,7 +43,7 @@ const schema = new mongoose.Schema({
             type:String,
             required:true
         },
-        Degree: {
+        degree: {
             type:String,
             required:true
         },
@@ -78,7 +75,7 @@ const schema = new mongoose.Schema({
             type:String,
             required:true
         },
-        Degree: {
+        degree: {
             type:String,
             required:true
         },
