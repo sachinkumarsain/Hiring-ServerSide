@@ -12,32 +12,43 @@ const router = express.Router();
 //.......................multer uses...................//
 
 const storage = multer.diskStorage({
-    destination: "uploads/Candidates",
+    destination: "./uploads/",
     filename: function (req, file, callback) {
-        const ext = path.extname(file.originalname);
-        const filename = req.body.name+ ext;
-        callback(null, filename);
+      callback(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
     },
-})
-const upload = multer({ storage: storage });
+  });
+  
+  // Initialize Multer
+  const upload = multer({
+    storage: storage,
+    limits: { fileSize: 1000000 }, // 1 MB limit
+  });
 
 
 
 //..........................post admin data........................//
 
-router.post("/admin", upload.single("profilePic"), async (req, res) => {   
+router.post("/admin", upload.single("data.profilePic"), async (req, res) => {   
 
 
     const { fullname, course, email, mobile, address, linkedin, github, summary, skills, lanuages, } = req.body.data
 
-    const profilePic = req.file; 
+    const profilePic = req.file;
 
-    const condedateData = new condedate({
-        fullname,profilePic, course, email, mobile, address, linkedin, github, summary, skills, lanuages
-    })
+    console.log(req.body)
 
-    await condedateData.save()
-    res.status(200).send(condedateData)
+    // console.log(profilePic)
+
+
+    // const condedateData = new condedate({
+    //     fullname,profilePic, course, email, mobile, address, linkedin, github, summary, skills, lanuages
+    // })
+
+    // await condedateData.save()
+    res.status(200).send(profilePic)
 })
 
 

@@ -3,7 +3,7 @@ import express, { Router } from "express"
 //.............import file...................//
 import authorize from "../Auto.js";
 import condedate from "../Modals/Condedate.js"
-// import dashboard from "../Modals/Dashboard.js";
+import dashboard from "../Modals/Dashboard.js";
 const categoryRouter = express.Router();
 
 //..................Category find and filter....................//
@@ -27,36 +27,42 @@ else{
 })
 //..........................condedate findOne...............//
 
-// categoryRouter.patch("/likeCondedate",   async(req,res)=>{
-//     let likeId = req.body.condidateId
-//     let dashboardData = await dashboard.find({})
-   
-// if(dashboardData.length===0){
 
-//     const Dashboard = new dashboard({
-//         favourite: 0
-//     })   
+categoryRouter.patch("/condedateShow/:jwttoken", authorize, async (req, res) => {
+    const condedateId = req.body.condedateId;
+    const username = req.authUsername;
 
-//     await Dashboard.save()
-// }
-// else if(booksLiked.includes(likeId)){
-//     res.status(200).send("you already likes this book")
-// }
-// else{
-//     let liked = await dashboard.updateOne(
-//         {$push:{favourite:likeId}}
-//     )
 
-//     // let totalLikedBook = await dashbord.likebook.find()
+    try {
+        const dashboardData = await dashboard.findOne({ username });
 
-//     res.status(200).send("Successfully liked  book")
+        if (!dashboardData) {
+            res.status(404).send("User account not found");
+        } else if (dashboardData.showCondedate.includes(condedateId)) {
+            res.status(200).send("You already liked this candidate");
+            const showCondedate = await condedate.findOne({ _id: condedateId }); 
+  
+            console.log(showCondedate)
+        if (showCondedate) {
+            res.status(200).send(showCondedate);
+              } else {
+                res.status(404).send("Candidate not found");   
+            }
+        } else {
+            
+                await dashboard.updateOne(
+                    { username },
+                    { $push: { showCondedate: condedateId } }
+                );
+                
+                console.log(await dashboard.find({}))
 
-// }
-    
-
-    
-        
-// })
-
+              
+          
+        }
+    } catch (error) {
+        res.status(500).send("Internal Server Error");
+    }
+});
 
 export default categoryRouter
