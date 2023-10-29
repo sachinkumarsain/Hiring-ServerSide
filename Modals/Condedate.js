@@ -6,7 +6,6 @@ const schema = new mongoose.Schema({
         type: String,
         require: true
     }
-   
     , course: {
         type: Array,
         require: true
@@ -30,6 +29,11 @@ const schema = new mongoose.Schema({
         type: String,
         require: true
     },
+    profilePic:{
+        type:String,
+        require:true
+    }
+    ,
     Graduation: {
         startYear: {
             type:String,
