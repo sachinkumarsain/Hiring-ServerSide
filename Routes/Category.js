@@ -15,10 +15,15 @@ categoryRouter.post("/category/:jwttoken",authorize,async(req,res)=>{
  
 if(courseName!==0){
     let totalCondedate= await condedate.find({});
-    let filterCondedate = totalCondedate.filter((person , index)=> person.course===courseName)
+    let filterCondedate = totalCondedate.map((person , index)=> person.course.filter((course ,index)=>{
+        return course===courseName
+    }))
     
-    res.status(200).send(filterCondedate)
-    
+
+   console.log(filterCondedate)
+ 
+    // res.status(200).send(filterCondedate)
+     
 }
 else{
     res.status(202).send("category don't available")

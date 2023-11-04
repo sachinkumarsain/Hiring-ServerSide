@@ -36,7 +36,7 @@ const schema = new mongoose.Schema({
     ,
     Graduation: {
         startYear: {
-            type:String,
+               type:String,
             required:true
         },
         lastYear: {
