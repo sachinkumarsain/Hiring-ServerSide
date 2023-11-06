@@ -110,5 +110,9 @@ const schema = new mongoose.Schema({
 
 const condedate = mongoose.model("condedate", schema);
 // const condedate = mongoose.model("condedate", schema);
+// const condedate = mongoose.model("condedate", schema);
+// const condedate = mongoose.model("condedate", schema);
+
+
 
 export default condedate;
