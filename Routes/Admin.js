@@ -65,6 +65,8 @@ router.post("/admin", upload.single("profilePic"), async (req, res) => {
   // const course = req.body.oneTank;
   const profilePic = req.file
   // const profilePic = req.file
+  // const profilePic = req.file
+
 
 
   console.log(profilePic)
